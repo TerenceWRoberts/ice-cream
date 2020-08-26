@@ -1,0 +1,70 @@
+<br>
+<div class="alert alert-primary" role="alert">
+  Total Results : {{ shopList.length }}
+</div>
+<div class="row" >
+  <div class="col-md-6" style="max-height: 500px; overflow:scroll; overflow-x:hidden">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Rating</th>
+        <th>Total Reviews</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let shop of shopList;index as i" (click)="showDetails(shop)">
+        <th>{{ i + 1 }}</th>
+        <td>{{ shop.name }}</td>
+        <td>{{ getLocation(shop.location) }}</td>
+        <td>{{ shop.rating }}</td>
+        <td>{{ shop.review_count }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-md-6" style="max-height: 500px; overflow:scroll; overflow-x:hidden">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Name</label>
+      <label class="col-sm-10 col-form-label"><a [href]="shop.url">{{shop.name}}</a></label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Statue</label>
+      <label class="col-sm-10 col-form-label">{{shop.is_closed ? 'Closed' : 'Open Now'}}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Phone</label>
+      <label class="col-sm-10 col-form-label">{{shop.display_phone}}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Address</label>
+      <label class="col-sm-10 col-form-label">{{ getLocation(shop.location) }}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Rating</label>
+      <label class="col-sm-10 col-form-label">{{shop.rating}}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Review Count</label>
+      <label class="col-sm-9 col-form-label">{{shop.review_count}}</label>
+    </div>
+    <div class="form-group row">
+      <div>
+        <label class="col-sm-4 col-form-label"><strong>Top Reviews</strong></label>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group row" *ngFor="let review of reviewList">
+              <label class="col-sm-12 col-form-label"><strong>{{ review.user.name }} | {{review.time_created | date}} | Rating: {{review.rating}}</strong></label>
+              <label class="col-sm-12 col-form-label">{{review.text}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
