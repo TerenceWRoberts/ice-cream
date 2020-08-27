@@ -24,7 +24,7 @@ export class ShopSearchComponent implements OnInit {
     this.yelp.getBusinessByItemNameAndCity()
     .then(res => {
       let data:any = res;
-      this.shopList = data.businesses;
+      this.shopList = data.businesses.slice(0,5);
       if(this.shopList.length > 0) this.showDetails(this.shopList[0]);
     })
     .catch(err => 
