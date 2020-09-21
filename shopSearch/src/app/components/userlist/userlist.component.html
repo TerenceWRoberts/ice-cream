@@ -1,0 +1,44 @@
+<form>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="username" name="username" class="form-control"  placeholder="Name" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Phone</label>
+        <input type="text" [(ngModel)]="phone" name="phone" class="form-control"  placeholder="Phone"required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Email</label>
+        <div class="input-group">
+          <input type="text" [(ngModel)]="email" name="email" class="form-control"  placeholder="Email" required>
+        </div>
+      </div>
+    </div>
+    <button (click)="saveUserEntry()" class="btn btn-primary" type="submit">Submit</button>
+</form>
+<hr>
+<button (click)="deleteAll()" tip='only non admin user will be deleted!' class="btn btn-primary" type="submit">Delete All</button>
+<span>(no-admin)</span>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Has Login(Admin)</th>
+      <th>Control</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userList;index as i;">
+      <th>{{ i + 1 }}</th>
+      <td>{{ user.name }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.haslogin ? 'Yes' : 'No' }}</td>
+      <td><button *ngIf="!user.haslogin" (click)="deleteUser(user._id)" class="btn btn-outline-danger my-2 my-sm-0"><i class="material-icons">delete</i></button></td>
+    </tr>
+    </tbody>
+  </table>

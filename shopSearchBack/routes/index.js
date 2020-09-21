@@ -17,7 +17,6 @@ router.get('/getBusinessList',function(req,res){
   const client = yelp.client(apiKey);
   client.search(searchRequest).then(response => {
     const prettyJson = JSON.stringify(response.jsonBody);
-    console.log(prettyJson);
     res.send(prettyJson);
   }).catch(e => {
     throw new Error(e);
@@ -29,7 +28,6 @@ router.get('/getBusinessReview/:id',function(req,res){
   let id = req.params.id;
   client.reviews(id).then(response => {
     const prettyJson = JSON.stringify(response.jsonBody);
-    console.log(prettyJson);
     res.send(prettyJson);
   }).catch(e => {
     throw new Error(e);
