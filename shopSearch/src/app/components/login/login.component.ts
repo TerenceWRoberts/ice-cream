@@ -35,10 +35,11 @@ export class LoginComponent implements OnInit {
       alert('enter your password');
     }else{
       this.svclogin.verifyUserLogin(username,pass).then(res => {
+        var result:any = res;
         if(res != undefined && res != null){
-          localStorage.setItem('user_name',res.name)
+          localStorage.setItem('user_name',result.name)
           localStorage.setItem('islogin','true');
-          this.svclogin.setUserLogin(res.name)
+          this.svclogin.setUserLogin(result.name)
           this.router.navigate(['/'])
           this.resetForm();
         }
